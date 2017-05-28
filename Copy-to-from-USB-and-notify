@@ -16,12 +16,38 @@ PATH=/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin
 
 case $ACTION in
   'ADD' )
-    // do your stuff here
-    echo "Added"
+    sleep 2
+
+    if [ -d $MOUNTPOINT ]
+    then
+      if [ $OWNER = "udev" ]
+      then
+        logger Started -t$PROG_NAME
+        echo "Started: `date`" > $LOGFILE
+
+        logger Pictures share -t$PROG_NAME
+        rsync -a -v --delete /mnt/user/Pictures $MOUNTPOINT/ 2>&1 >> $LOGFILE
+
+        logger Syncing -t$PROG_NAME
+        sync
+
+        logger Unmounting PicturesBackup -t$PROG_NAME
+        /usr/local/sbin/rc.unassigned umount $DEVICE
+
+       echo "Completed: `date`" >> $LOGFILE
+        logger Pictures Backup drive can be removed -t$PROG_NAME
+
+    fi
+    else
+        logger Pictures Backup Drive Not Mounted -t$PROG_NAME
+  fi
   ;;
 
   'REMOVE' )
-    // do your stuff here
-    echo "Removed"
+    #
+    # Beep that the device is unmounted.
+    #
+
+    /usr/local/emhttp/webGui/scripts/notify -e "unRAID Server Notice" -s "Server Backup" -d "Pictures Backup completed" -i "normal"
   ;;
 esac
