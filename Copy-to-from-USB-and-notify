@@ -1,0 +1,27 @@
+#!/bin/bash
+PATH=/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin
+## Available variables: 
+# AVAIL      : available space
+# USED       : used space
+# SIZE       : partition size
+# SERIAL     : disk serial number
+# ACTION     : if mounting, ADD; if unmounting, REMOVE
+# MOUNTPOINT : where the partition is mounted
+# FSTYPE     : partition filesystem
+# LABEL      : partition label
+# DEVICE     : partition device, e.g /dev/sda1
+# OWNER      : "udev" if executed by UDEV, otherwise "user"
+# PROG_NAME  : program name of this script
+# LOGFILE    : log file for this script
+
+case $ACTION in
+  'ADD' )
+    // do your stuff here
+    echo "Added"
+  ;;
+
+  'REMOVE' )
+    // do your stuff here
+    echo "Removed"
+  ;;
+esac
