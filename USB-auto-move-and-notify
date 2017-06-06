@@ -14,6 +14,10 @@ PATH=/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin
 # PROG_NAME  : program name of this script
 # LOGFILE    : log file for this script
 
+USBdestination="fromServer"
+serverTemp="/mnt/user/Media/Temporary Items"
+serverSource="/mnt/user/Handbrake-hotfolder/watch/"
+
 case $ACTION in
   'ADD' )
     sleep 2
@@ -25,8 +29,12 @@ case $ACTION in
         logger Started -t$PROG_NAME
         echo "Started: `date`" > $LOGFILE
 
-        logger Pictures share -t$PROG_NAME
-        rsync -a -v --delete /mnt/user/Pictures $MOUNTPOINT/ 2>&1 >> $LOGFILE
+        logger Move from server to USB -t$PROG_NAME
+        rsync -rv --dry-run --remove-source-files "$serverSource" "$MOUNTPOINT/$USBdestination" 2>&1 >> $LOGFILE
+
+#        logger Move from USB to server -t$PROG_NAME
+#        rsync -rv --dry-run --remove-source-files --exclude="$USBdestination" --exclude="*.txt" $MOUNTPOINT/ $serverTemp 2>&1 >> $LOGFILE
+
 
         logger Syncing -t$PROG_NAME
         sync
