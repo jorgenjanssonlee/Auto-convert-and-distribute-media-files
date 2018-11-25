@@ -29,8 +29,8 @@ case $ACTION in
         echo "Started: `date`" > $LOGFILE
 
         logger Moving USB content to Temporary Items -t$PROG_NAME
-        rsync -av --exclude=".*" --exclude="System Volume*" --remove-source-files $MOUNTPOINT/ "$destFolder" 2>&1 >> $LOGFILE
-        find . -depth -empty -type d -delete #remove empty directories from USB
+        rsync -av --exclude=".*" --exclude="System Volume*" --remove-source-files "$MOUNTPOINT"/ "$destFolder" 2>&1 >> $LOGFILE
+        find "$MOUNTPOINT" -depth -empty -type d -delete #remove empty directories from USB 2>&1 >> $LOGFILE
 
         logger Syncing -t$PROG_NAME
         sync
