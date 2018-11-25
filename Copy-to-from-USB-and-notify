@@ -1,5 +1,8 @@
 #!/bin/bash
 PATH=/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin
+## Version 0.1
+## Script to be used with unRAID plugin "unassigned devices" that triggers on plugin/unplug of USB drive
+
 ## Available variables: 
 # AVAIL      : available space
 # USED       : used space
@@ -14,10 +17,33 @@ PATH=/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin
 # PROG_NAME  : program name of this script
 # LOGFILE    : log file for this script
 
+destFolder="/mnt/user0/Media/Movies/Temporary Items/"$(date +%Y%m%d)
+
 case $ACTION in
   'ADD' )
-    // do your stuff here
-    echo "Added"
+    if [ -d $MOUNTPOINT ]
+    then
+      if [ $OWNER = "udev" ]
+      then
+        logger Started -t$PROG_NAME
+        echo "Started: `date`" > $LOGFILE
+
+        logger Moving USB content to Temporary Items -t$PROG_NAME
+        rsync -av --exclude=".*" --exclude="System Volume*" --remove-source-files $MOUNTPOINT/ "$destFolder" 2>&1 >> $LOGFILE
+        find . -depth -empty -type d -delete #remove empty directories from USB
+
+        logger Syncing -t$PROG_NAME
+        sync
+
+	logger Completed -t$PROG_NAME
+        echo "Completed: `date`" >> $LOGFILE
+
+        /usr/local/emhttp/webGui/scripts/notify -e "unRAID Server Notice" -s "Move USB content to unRAID" -d "Move from USB completed" -i "normal"
+    fi
+    else
+        logger Something went wrong -t$PROG_NAME
+        /usr/local/emhttp/webGui/scripts/notify -e "unRAID Server Notice" -s "Move USB content to unRAID" -d "Something went wrong with Move from USB" -i "normal"
+    fi
   ;;
 
   'REMOVE' )
