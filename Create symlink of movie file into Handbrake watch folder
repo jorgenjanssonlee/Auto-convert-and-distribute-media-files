@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# 1. get movie file name and directory path
+# 2. get Handbrake volume mapping
+# 3. create symlink in Handbrake watch folder with volume mapping substitution
+
+hbWatchFolder="/mnt/user/Media/Handbrake_hotfolder/watch"
+hbVolMapUR="/mnt/user/Media"
+hbVolMapCont="/storage"
+
+sourceFile="/mnt/user/Media/TV_Shows/English/Ozark/Season\ 2/Ozark.S02E10.REPACK.720p.WEBRip.X264-METCON-Obfuscated.mkv"
+
+remappedSourceFile=$(echo "$sourceFile" | sed 's_/mnt/user/Media_/storage_g') # todo use variables
+
+echo $remappedSourceFile
+
+ln -s -t "$hbWatchFolder" "$remappedSourceFile"
