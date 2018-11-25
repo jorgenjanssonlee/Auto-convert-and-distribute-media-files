@@ -32,14 +32,14 @@ case $ACTION in
         # --------- Start of moving files from USB to unRAID ------------
 	logger Moving USB content to unRAID -t$PROG_NAME
         rsync -av --exclude=".*" --exclude="System Volume*" --remove-source-files "$MOUNTPOINT"/ "$unRAIDdestFolder" 2>&1 >> $LOGFILE
-        find "$MOUNTPOINT" -depth -empty -type d -delete 2>&1 >> $LOGFILE #remove empty directories from USB
+        find "$MOUNTPOINT" -depth -empty -type d -delete 2>&1 >> $LOGFILE
 
         logger Syncing -t$PROG_NAME
         sync
 	logger Completed -t$PROG_NAME
         echo "Completed: `date`" >> $LOGFILE
 
-        /usr/local/emhttp/webGui/scripts/notify -e "unRAID Server Notice" -s "Move USB content to or from unRAID" -d "Move from USB completed" -i "normal"
+        /usr/local/emhttp/webGui/scripts/notify -e "unRAID Server Notice" -s "USB transfer" -d "Move from USB completed" -i "normal"
 	
 	# --------- End of moving files from USB to unRAID --------------
 	
@@ -52,13 +52,13 @@ case $ACTION in
 	logger Completed -t$PROG_NAME
         echo "Completed: `date`" >> $LOGFILE
 
-	/usr/local/emhttp/webGui/scripts/notify -e "unRAID Server Notice" -s "Move USB content to or from unRAID" -d "Move to USB completed" -i "normal"
+	/usr/local/emhttp/webGui/scripts/notify -e "unRAID Server Notice" -s "USB transfer" -d "Move to USB completed" -i "normal"
 	
 	# --------- End of moving files from unRAID to USB ------------
     fi
     else
         logger Something went wrong -t$PROG_NAME
-        /usr/local/emhttp/webGui/scripts/notify -e "unRAID Server Notice" -s "Move USB content to or from unRAID" -d "Something went wrong with Move from USB" -i "normal"
+        /usr/local/emhttp/webGui/scripts/notify -e "unRAID Server Notice" -s "USB transfer" -d "Something went wrong" -i "normal"
     fi
   ;;
 
