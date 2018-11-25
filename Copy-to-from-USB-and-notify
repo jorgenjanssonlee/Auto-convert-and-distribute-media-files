@@ -17,7 +17,8 @@ PATH=/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin
 # PROG_NAME  : program name of this script
 # LOGFILE    : log file for this script
 
-destFolder="/mnt/user0/Media/Movies/Temporary Items/"$(date +%Y%m%d)
+unRAIDdestFolder="/mnt/user0/Media/Movies/Temporary Items/"$(date +%Y%m%d)
+unRAIDsourceFolder="/mnt/user/Media/Handbrake_hotfolder/output/"
 
 case $ACTION in
   'ADD' )
@@ -28,21 +29,36 @@ case $ACTION in
         logger Started -t$PROG_NAME
         echo "Started: `date`" > $LOGFILE
 
-        logger Moving USB content to Temporary Items -t$PROG_NAME
-        rsync -av --exclude=".*" --exclude="System Volume*" --remove-source-files "$MOUNTPOINT"/ "$destFolder" 2>&1 >> $LOGFILE
-        find "$MOUNTPOINT" -depth -empty -type d -delete #remove empty directories from USB 2>&1 >> $LOGFILE
+        # --------- Start of moving files from USB to unRAID ------------
+	logger Moving USB content to unRAID -t$PROG_NAME
+        rsync -av --exclude=".*" --exclude="System Volume*" --remove-source-files "$MOUNTPOINT"/ "$unRAIDdestFolder" 2>&1 >> $LOGFILE
+        find "$MOUNTPOINT" -depth -empty -type d -delete 2>&1 >> $LOGFILE #remove empty directories from USB
 
         logger Syncing -t$PROG_NAME
         sync
-
 	logger Completed -t$PROG_NAME
         echo "Completed: `date`" >> $LOGFILE
 
-        /usr/local/emhttp/webGui/scripts/notify -e "unRAID Server Notice" -s "Move USB content to unRAID" -d "Move from USB completed" -i "normal"
+        /usr/local/emhttp/webGui/scripts/notify -e "unRAID Server Notice" -s "Move USB content to or from unRAID" -d "Move from USB completed" -i "normal"
+	
+	# --------- End of moving files from USB to unRAID --------------
+	
+	# --------- Start of moving files from unRAID to USB ------------
+	logger Moving unRAID content to USB -t$PROG_NAME
+	rsync -rv --remove-source-files "$unRAIDsourceFolder" "$MOUNTPOINT" 2>&1 >> $LOGFILE
+	
+	logger Syncing -t$PROG_NAME
+        sync
+	logger Completed -t$PROG_NAME
+        echo "Completed: `date`" >> $LOGFILE
+
+	/usr/local/emhttp/webGui/scripts/notify -e "unRAID Server Notice" -s "Move USB content to or from unRAID" -d "Move to USB completed" -i "normal"
+	
+	# --------- End of moving files from unRAID to USB ------------
     fi
     else
         logger Something went wrong -t$PROG_NAME
-        /usr/local/emhttp/webGui/scripts/notify -e "unRAID Server Notice" -s "Move USB content to unRAID" -d "Something went wrong with Move from USB" -i "normal"
+        /usr/local/emhttp/webGui/scripts/notify -e "unRAID Server Notice" -s "Move USB content to or from unRAID" -d "Something went wrong with Move from USB" -i "normal"
     fi
   ;;
 
