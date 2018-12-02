@@ -3,7 +3,7 @@ PATH=/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin
 ## Version 1.0
 ## Script to be used with unRAID plugin "unassigned devices" that triggers on plugin/unplug of USB drive
 
-## Available variables: 
+## Available variables:
 # AVAIL      : available space
 # USED       : used space
 # SIZE       : partition size
@@ -31,29 +31,34 @@ case $ACTION in
         logger Started -t$PROG_NAME
         echo "Started: `date`" > $LOGFILE
 
-        # --------- Start of moving files from USB to unRAID ------------
+  # --------- Start of moving files from USB to unRAID ------------
 	logger Moving USB content to unRAID -t$PROG_NAME
         rsync -av --exclude=".*" --exclude="System Volume*" --exclude="$USBdestFolder" --remove-source-files "$MOUNTPOINT"/ "$unRAIDdestFolder" 2>&1 >> $LOGFILE
         find "$MOUNTPOINT" -depth -empty -type d -delete 2>&1 >> $LOGFILE
 
-        logger Syncing -t$PROG_NAME
+  logger Syncing -t$PROG_NAME
         sync
-	logger Completed -t$PROG_NAME
+
+	logger Completed moving USB content to unRAID -t$PROG_NAME
         echo "Completed: `date`" >> $LOGFILE
 
         /usr/local/emhttp/webGui/scripts/notify -e "unRAID Server Notice" -s "USB transfer" -d "Move from USB completed" -i "normal"
 	# --------- End of moving files from USB to unRAID --------------
-	
+
 	# --------- Start of moving files from unRAID to USB ------------
 	logger Moving unRAID content to USB -t$PROG_NAME
 	rsync -rv --remove-source-files "$unRAIDsourceFolder" "$MOUNTPOINT"/"$USBdestFolder" 2>&1 >> $LOGFILE
-	
+
 	logger Syncing -t$PROG_NAME
         sync
-	logger Completed -t$PROG_NAME
+
+  logger Unmounting -t$PROG_NAME
+        /usr/local/sbin/rc.unassigned umount $DEVICE
+
+	logger Completed moving unRAID content to USB -t$PROG_NAME
         echo "Completed: `date`" >> $LOGFILE
 
-	/usr/local/emhttp/webGui/scripts/notify -e "unRAID Server Notice" -s "USB transfer" -d "Move to USB completed" -i "normal"
+	/usr/local/emhttp/webGui/scripts/notify -e "unRAID Server Notice" -s "USB transfer" -d "Move to USB completed, you can now unplug USB or mount it manually to copy more files" -i "normal"
 	# --------- End of moving files from unRAID to USB ------------
     fi
     else
