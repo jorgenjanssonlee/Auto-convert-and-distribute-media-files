@@ -10,7 +10,12 @@ const config = {
    traktCreatedAt: ,
    traktAccessTokenExpiresIn: ,
    traktRefreshToken: ""
- }
+ },
+ radarr: {
+   ip: "",
+   port: "",
+   apikey: ""
+}
 };
 
 module.exports = config;
