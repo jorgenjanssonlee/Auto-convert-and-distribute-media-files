@@ -32,7 +32,7 @@ function getTraktMovies(callback){
       // console.log('Status:', response.statusCode);
       // console.log('Headers:', JSON.stringify(response.headers));
       // console.log('Response:', body);
-  	  callback(body);
+  	  callback(JSON.parse(body));
     });
 }
 
@@ -53,12 +53,20 @@ function getRadarrMovies(callback){
 }
 
 function compareResults(traktMovies, radarrMovies, callback){
-	// iterate through items in traktMovies
-	// and match imdbId to items in radarrMovies
-	// for each matchs, if downloaded = true (and imdbId has not been processed previously, remove from trakt.tv?)
+	var movieMatches = ["matches goes here"]; // array of imdbID and file path
+	var traktImdbID = [];
+
+	// iterate through items in traktMovies and store the imdbIDs
+	for (var i = 0; i < traktMovies.length; i++) {
+    if (traktMovies[i].movie.ids.imdb != null) {
+			traktImdbID.push(traktMovies[i].movie.ids.imdb);
+		}
+	};
+
+	// match traktImdbIDs to items in radarrMovies
+	// for each match, if downloaded = true (and imdbId has not been processed previously, remove from trakt.tv?)
 	// return path and relativePath
-	console.log(traktMovies);
-  console.log(radarrMovies);
-  var movieMatches = "matches goes here";
-  callback(movieMatches);
+
+	callback(traktImdbID);
+//  callback(movieMatches);
 }

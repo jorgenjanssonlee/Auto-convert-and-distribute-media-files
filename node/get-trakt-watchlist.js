@@ -15,5 +15,5 @@ request({
   }}, function (error, response, body) {
     console.log('Status:', response.statusCode);
     console.log('Headers:', JSON.stringify(response.headers));
-    console.log('Response:', body);
+    console.log('Response:', JSON.parse(body));
   });
