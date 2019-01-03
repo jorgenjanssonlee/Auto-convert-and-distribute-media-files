@@ -48,25 +48,30 @@ function getRadarrMovies(callback){
       // console.log('Headers:', JSON.stringify(response.headers));
       // console.log('Response:', body);
       // callback(new Error('bad resp.'));
-      callback(body);
+      callback(JSON.parse(body));
     });
 }
 
 function compareResults(traktMovies, radarrMovies, callback){
-	var movieMatches = ["matches goes here"]; // array of imdbID and file path
-	var traktImdbID = [];
+	var movieMatches = []; // array of imdbID and file path
 
 	// iterate through items in traktMovies and store the imdbIDs
+
 	for (var i = 0; i < traktMovies.length; i++) {
     if (traktMovies[i].movie.ids.imdb != null) {
-			traktImdbID.push(traktMovies[i].movie.ids.imdb);
+
+			// match traktImdbIDs to items in radarrMovies where downloaded = true
+			// TODO: track already processed movies and exclude from matching (to avoid re-processing). Consider removing from trakt list?
+			for (var j = 0; j < radarrMovies.length; j++) {
+				if (traktMovies[i].movie.ids.imdb == radarrMovies[j].imdbId && radarrMovies[j].downloaded == true) {
+					var movieDetails = {};
+					movieDetails["imdbId"] = traktMovies[i].movie.ids.imdb;
+					movieDetails["folderPath"] = radarrMovies[j].folderName;
+					movieDetails["fileName"] = radarrMovies[j].movieFile.relativePath;
+					movieMatches.push(movieDetails);
+				}
+			}
 		}
 	};
-
-	// match traktImdbIDs to items in radarrMovies
-	// for each match, if downloaded = true (and imdbId has not been processed previously, remove from trakt.tv?)
-	// return path and relativePath
-
-	callback(traktImdbID);
-//  callback(movieMatches);
+  callback(movieMatches);
 }
