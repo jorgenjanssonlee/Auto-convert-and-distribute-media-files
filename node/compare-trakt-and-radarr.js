@@ -6,18 +6,22 @@
 const config = require('./config');
 
 var request = require('request');
+var fs = require('fs');
 
+// TODO: add start time to log
 main();
 
 function main(){
 	getTraktMovies( (traktMovies) => {
 		getRadarrMovies( (radarrMovies) => {
-      compareResults(traktMovies, radarrMovies, (movieMatches) => {
-        console.log(movieMatches);
+      compareResults(traktMovies, radarrMovies, (movieMatches) => { // TODO: add count of files to process
+				createSymlinkForHandbrake(movieMatches);
+				console.log("Movie processing completed");
+				});
       });
 		});
-	});
-}
+	}
+
 
 
 function getTraktMovies(callback){
@@ -74,4 +78,14 @@ function compareResults(traktMovies, radarrMovies, callback){
 		}
 	};
   callback(movieMatches);
+}
+
+function createSymlinkForHandbrake(movies){
+	// create symlink in Handbrake watch folder with volume mapping substitution
+  for (var i = 0; i < movies.length; i++) {
+    var destFile = config.handbrake.hbWatchFolder + "/" + movies[i].fileName;
+    var remappedSourceFile = movies[i].folderPath.replace(config.handbrake.hbVolumeMappingRadarr, config.handbrake.hbVolumeMappingHandbrake) + "/" + movies[i].fileName;
+    fs.symlinkSync(remappedSourceFile, destFile);
+    console.log("symlink created: " + destFile);
+  };
 }

@@ -15,7 +15,12 @@ const config = {
    ip: "",
    port: "",
    apikey: ""
-}
+ },
+ handbrake: {
+   hbWatchFolder: "/mnt/user/Media/Handbrake_hotfolder/watch",
+   hbVolumeMappingHandbrake: "/storage",
+   hbVolumeMappingRadarr: "/media"
+ }
 };
 
 module.exports = config;
