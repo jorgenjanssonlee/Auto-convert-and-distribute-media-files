@@ -20,6 +20,9 @@ const config = {
    hbWatchFolder: "/mnt/user/Media/Handbrake_hotfolder/watch",
    hbVolumeMappingHandbrake: "/storage",
    hbVolumeMappingRadarr: "/media"
+ },
+ script: {
+   movieHistory: "/mnt/user/appdata/some-dir/history.txt"  // insert unRaid script config diretory here
  }
 };
 

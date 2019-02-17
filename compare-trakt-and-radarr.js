@@ -1,4 +1,4 @@
-// Version 0.1
+// Version 0.2
 // Script to retreive the watchlist from a friend's trakt account,
 // compare it to movies in my radarr library and
 // generate a symlink for matches into handbrake watch folder
@@ -40,6 +40,7 @@ function getTraktMovies(callback){
     });
 }
 
+
 function getRadarrMovies(callback){
   request({
     method: 'GET',
@@ -56,36 +57,48 @@ function getRadarrMovies(callback){
     });
 }
 
+
 function compareResults(traktMovies, radarrMovies, callback){
-	var movieMatches = []; // array of imdbID and file path
+	var movieMatches = []; // array of imdbID and file path for movies matches between trakt and radarr that has not been previously processed
+	// get array of previously processed movies to avoid double-processing
+	if (fs.existsSync(config.script.movieHistory)) {
+		try {
+			var data = fs.readFileSync(config.script.movieHistory);
+			var movieHistory = data.toString().split("\n");
+			movieHistory.splice(-1,1);
 
-	// iterate through items in traktMovies and store the imdbIDs
+			// iterate through items in traktMovies that have not been previously processed and store the imdbIDs
+			for (var i = 0; i < traktMovies.length; i++) {
+				if (traktMovies[i].movie.ids.imdb != null && !(movieHistory.indexOf(traktMovies[i].movie.ids.imdb) > -1)) {
 
-	for (var i = 0; i < traktMovies.length; i++) {
-    if (traktMovies[i].movie.ids.imdb != null) {
-
-			// match traktImdbIDs to items in radarrMovies where downloaded = true
-			// TODO: track already processed movies and exclude from matching (to avoid re-processing). Consider removing from trakt list?
-			for (var j = 0; j < radarrMovies.length; j++) {
-				if (traktMovies[i].movie.ids.imdb == radarrMovies[j].imdbId && radarrMovies[j].downloaded == true) {
-					var movieDetails = {};
-					movieDetails["imdbId"] = traktMovies[i].movie.ids.imdb;
-					movieDetails["folderPath"] = radarrMovies[j].folderName;
-					movieDetails["fileName"] = radarrMovies[j].movieFile.relativePath;
-					movieMatches.push(movieDetails);
+					// match traktImdbIDs to items in radarrMovies where downloaded = true
+					for (var j = 0; j < radarrMovies.length; j++) {
+						if ( traktMovies[i].movie.ids.imdb == radarrMovies[j].imdbId && radarrMovies[j].downloaded == true) {
+							var movieDetails = {};
+							movieDetails["imdbId"] = traktMovies[i].movie.ids.imdb;
+							movieDetails["folderPath"] = radarrMovies[j].folderName;
+							movieDetails["fileName"] = radarrMovies[j].movieFile.relativePath;
+							movieMatches.push(movieDetails);
+						}
+					}
 				}
-			}
+			};
+			callback(movieMatches);
+		} catch (err) {
+			console.error(err);
 		}
-	};
-  callback(movieMatches);
+	}
 }
+
 
 function createSymlinkForHandbrake(movies){
 	// create symlink in Handbrake watch folder with volume mapping substitution
+	// then add imdb of movie to history log to prevent re-processing
   for (var i = 0; i < movies.length; i++) {
     var destFile = config.handbrake.hbWatchFolder + "/" + movies[i].fileName;
     var remappedSourceFile = movies[i].folderPath.replace(config.handbrake.hbVolumeMappingRadarr, config.handbrake.hbVolumeMappingHandbrake) + "/" + movies[i].fileName;
     fs.symlinkSync(remappedSourceFile, destFile);
-    console.log("symlink created: " + destFile);
+		console.log("symlink created: " + destFile);
+		fs.appendFileSync(config.script.movieHistory, movies[i].imdbId + "\n"); // log processed movies to file
   };
 }
