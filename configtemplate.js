@@ -22,7 +22,7 @@ const config = {
    hbVolumeMappingRadarr: "/media"
  },
  script: {
-   movieHistory: "/mnt/user/appdata/some-dir/history.txt"  // insert unRaid script config diretory here
+   movieHistory: "/mnt/cache/appdata/Auto-convert-and-distribute-media-files/moviehistory.txt"
  }
 };
 
