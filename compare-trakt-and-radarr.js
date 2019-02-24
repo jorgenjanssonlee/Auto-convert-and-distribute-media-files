@@ -1,10 +1,11 @@
-// Version 0.2
+// Version 1.0
 // Script to retreive the watchlist from a friend's trakt account,
 // compare it to movies in my radarr library and
 // generate a symlink for matches into handbrake watch folder
 
 const config = require('./config');
 
+var { exec } = require('child_process');
 var request = require('request');
 var fs = require('fs');
 
@@ -94,11 +95,28 @@ function compareResults(traktMovies, radarrMovies, callback){
 function createSymlinkForHandbrake(movies){
 	// create symlink in Handbrake watch folder with volume mapping substitution
 	// then add imdb of movie to history log to prevent re-processing
+	var completedSymlinks = "";
   for (var i = 0; i < movies.length; i++) {
-    var destFile = config.handbrake.hbWatchFolder + "/" + movies[i].fileName;
-    var remappedSourceFile = movies[i].folderPath.replace(config.handbrake.hbVolumeMappingRadarr, config.handbrake.hbVolumeMappingHandbrake) + "/" + movies[i].fileName;
-    fs.symlinkSync(remappedSourceFile, destFile);
-		console.log("symlink created: " + destFile);
-		fs.appendFileSync(config.script.movieHistory, movies[i].imdbId + "\n"); // log processed movies to file
+		try {
+			var destFile = config.handbrake.hbWatchFolder + "/" + movies[i].fileName;
+	    var remappedSourceFile = movies[i].folderPath.replace(config.handbrake.hbVolumeMappingRadarr, config.handbrake.hbVolumeMappingHandbrake) + "/" + movies[i].fileName;
+	    fs.symlinkSync(remappedSourceFile, destFile);
+			console.log("symlink created: " + destFile);
+			completedSymlinks += destFile + "\n";
+			fs.appendFileSync(config.script.movieHistory, movies[i].imdbId + "\n"); // log processed movies to file
+		} catch (err) {
+			console.log(err);
+		}
   };
+	// send unraid notification with list of created symlinks
+	var unraidNotification = "/usr/local/emhttp/webGui/scripts/notify -e 'unRAID Server Notice' -s 'Handbrake Symlink creation' -d '" + completedSymlinks + "' -i 'normal'";
+	exec(unraidNotification, (err, stdout, stderr) => {
+		if (err) {
+			console.log(err);
+			return;
+		}
+		// the *entire* stdout and stderr (buffered)
+    // console.log(`stdout: ${stdout}`);
+    // console.log(`stderr: ${stderr}`);
+	});
 }
