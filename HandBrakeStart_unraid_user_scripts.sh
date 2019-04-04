@@ -1,6 +1,9 @@
 #!/bin/bash
 
-if [ -d "/mnt/user/Media/Handbrake_hotfolder/watch" ] && [ -n "$(ls -A "/mnt/user/Media/Handbrake_hotfolder/watch")" ]; then
+# Set the path to the Handbrake watch folder as seen from the Unraid command line
+WATCH="/mnt/user/Media/Handbrake_hotfolder/watch"
+
+if [ -d "$WATCH" ] && [ -n "$(ls -A "/$WATCH")" ]; then
   docker start HandBrake
-  logger "HandBrake started by CA user script"
+  logger "HandBrake started by User Scripts"
 fi
