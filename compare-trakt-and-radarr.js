@@ -109,14 +109,16 @@ function createSymlinkForHandbrake(movies){
 		}
   };
 	// send unraid notification with list of created symlinks
-	var unraidNotification = "/usr/local/emhttp/webGui/scripts/notify -e 'unRAID Server Notice' -s 'Handbrake Symlink creation' -d '" + completedSymlinks + "' -i 'normal'";
-	exec(unraidNotification, (err, stdout, stderr) => {
-		if (err) {
-			console.log(err);
-			return;
-		}
-		// the *entire* stdout and stderr (buffered)
-    // console.log(`stdout: ${stdout}`);
-    // console.log(`stderr: ${stderr}`);
-	});
+	if (completedSymlinks) {
+		var unraidNotification = "/usr/local/emhttp/webGui/scripts/notify -e 'unRAID Server Notice' -s 'Handbrake Symlink creation' -d '" + completedSymlinks + "' -i 'normal'";
+		exec(unraidNotification, (err, stdout, stderr) => {
+			if (err) {
+				console.log(err);
+				return;
+			}
+			// the *entire* stdout and stderr (buffered)
+	    // console.log(`stdout: ${stdout}`);
+	    // console.log(`stderr: ${stderr}`);
+		});
+	}
 }
