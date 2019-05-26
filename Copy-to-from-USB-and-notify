@@ -21,6 +21,8 @@ PATH=/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin
 unRAIDdestFolder="/mnt/user0/Media/Movies/Temporary Items/"$(date +%Y%m%d)
 unRAIDsourceFolder="/mnt/user/Media/Handbrake_hotfolder/output/"
 USBdestFolder="from_Jorgen"
+USBfiles=""
+unRAIDfiles=""
 
 case $ACTION in
   'ADD' )
@@ -30,6 +32,8 @@ case $ACTION in
       then
         logger Started -t$PROG_NAME
         echo "Started: `date`" > $LOGFILE
+        USBfiles=$(ls $MOUNTPOINT)
+        unRAIDfiles=$(ls unRAIDsourceFolder)
 
   # --------- Start of moving files from USB to unRAID ------------
 	logger Moving USB content to unRAID -t$PROG_NAME
@@ -43,6 +47,7 @@ case $ACTION in
         echo "Completed: `date`" >> $LOGFILE
 
         /usr/local/emhttp/webGui/scripts/notify -e "unRAID Server Notice" -s "USB transfer" -d "Move from USB completed" -i "normal"
+        /usr/local/emhttp/webGui/scripts/notify -e "unRAID Server Notice" -s "Files from USB" -d "$USBfiles" -i "normal"
 	# --------- End of moving files from USB to unRAID --------------
 
 	# --------- Start of moving files from unRAID to USB ------------
@@ -58,12 +63,13 @@ case $ACTION in
 	logger Completed moving unRAID content to USB -t$PROG_NAME
         echo "Completed: `date`" >> $LOGFILE
 
-	/usr/local/emhttp/webGui/scripts/notify -e "unRAID Server Notice" -s "USB transfer" -d "Move to USB completed, you can now unplug USB or mount it manually to copy more files" -i "normal"
+	/usr/local/emhttp/webGui/scripts/notify -e "unRAID Server Notice" -s "USB transfer" -d "Move to USB completed, you can now unplug USB or mount it manually to copy more files $(cat "$LOGFILE")" -i "normal"
+  /usr/local/emhttp/webGui/scripts/notify -e "unRAID Server Notice" -s "Files from unRAID" -d "$unRAIDfiles" -i "normal"
 	# --------- End of moving files from unRAID to USB ------------
     fi
     else
         logger Something went wrong -t$PROG_NAME
-        /usr/local/emhttp/webGui/scripts/notify -e "unRAID Server Notice" -s "USB transfer" -d "Something went wrong" -i "normal"
+        /usr/local/emhttp/webGui/scripts/notify -e "unRAID Server Notice" -s "USB transfer error" -d "$(cat "$LOGFILE")" -i "normal"
     fi
   ;;
 
