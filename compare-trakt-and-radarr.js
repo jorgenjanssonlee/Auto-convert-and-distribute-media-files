@@ -74,7 +74,7 @@ function compareResults(traktMovies, radarrMovies, callback){
 
 					// match traktImdbIDs to items in radarrMovies where downloaded = true
 					for (var j = 0; j < radarrMovies.length; j++) {
-						if ( traktMovies[i].movie.ids.imdb == radarrMovies[j].imdbId && radarrMovies[j].downloaded == true) {
+						if ( traktMovies[i].movie.ids.imdb == radarrMovies[j].imdbId && radarrMovies[j].hasFile == true) {
 							var movieDetails = {};
 							movieDetails["imdbId"] = traktMovies[i].movie.ids.imdb;
 							movieDetails["folderPath"] = radarrMovies[j].folderName;
