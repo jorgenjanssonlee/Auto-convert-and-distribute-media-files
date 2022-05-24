@@ -45,7 +45,7 @@ function getTraktMovies(callback){
 function getRadarrMovies(callback){
   request({
     method: 'GET',
-    url: 'http://' + config.radarr.ip + ':' + config.radarr.port + '/api/movie',
+    url: 'http://' + config.radarr.ip + ':' + config.radarr.port + '/api/v3/movie',
     headers: {
       'Content-Type': 'application/json',
       'X-API-Key': config.radarr.apikey
