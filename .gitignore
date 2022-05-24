@@ -1,3 +1,5 @@
 /config.js
+/config.bak
 /get-trakt-device-token-node.js
 /node_modules/
+/refreshTraktAccessToken.js
