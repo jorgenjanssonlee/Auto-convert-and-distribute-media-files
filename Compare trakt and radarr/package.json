@@ -1,0 +1,29 @@
+{
+  "name": "compare-trakt-and-radarr",
+  "version": "1.1.0",
+  "description": "Retreives the watchlist from a user account on trakt.tv compares it to movies in the local Radarr library, generates a symlink for any matches and saves the symlink in a Handbrake hotfoder for processing ",
+  "main": "compare-trakt-and-radarr.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jorgenjanssonlee/Auto-convert-and-distribute-media-files.git"
+  },
+  "keywords": [
+    "trakt",
+    "radarr",
+    "handbrake"
+  ],
+  "author": "Jorgen Jansson",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/jorgenjanssonlee/Auto-convert-and-distribute-media-files/issues"
+  },
+  "homepage": "https://github.com/jorgenjanssonlee/Auto-convert-and-distribute-media-files#readme",
+  "dependencies": {
+    "child_process": "^1.0.2",
+    "fs": "^0.0.1-security",
+    "request": "^2.88.2"
+  }
+}
