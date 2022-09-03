@@ -9,10 +9,10 @@ var { exec } = require('child_process');
 var request = require('request');
 var fs = require('fs');
 
-// TODO: add start time to log
 main();
 
 function main(){
+	console.log("Starting movie processing " + new Date(new Date()+3600*1000*10).toISOString());
 	getTraktMovies( (traktMovies) => {
 		getRadarrMovies( (radarrMovies) => {
       compareResults(traktMovies, radarrMovies, (movieMatches) => { // TODO: add count of files to process
