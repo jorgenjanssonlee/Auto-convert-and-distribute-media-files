@@ -1,1 +1,85 @@
-<mxfile modified="2018-12-02T05:56:33.733Z" host="www.draw.io" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:63.0) Gecko/20100101 Firefox/63.0" etag="f6714d47-3826-ed31-9d6a-39646e66e600" version="9.5.1" type="github"><diagram id="6a731a19-8d31-9384-78a2-239565b7b9f0" name="Page-1">3VrLcqM4FP0aL3EhJB5eJpl0eqqmq7o6i+lZTclIBjoYeYT8mq8fCQQYhDP42aSziMVFunB17jl6MYFPy90Lx6v4CyM0nTg22U3gbxPHAcAF8kdZ9tri2W5piXhCtK0xvCb/Um20tXWdEJq3KgrGUpGs2saQZRkNRcuGOWfbdrUFS9tPXeGIGobXEKem9c+EiLgKzJs1Nz7TJIr1owPHL2/McfgWcbbO9PMmDlwUf+XtJa586UDzGBO2PTDB5wl84oyJsrTcPdFUdW7VbWW7T0fu1u/NaSYGNcAuXYC5b0EQBlboAmghOHOswHMC4CAws6XF9Uq3G5yudQflYUzJOqVEIcOTKKJcByT2VSfmgrO3uv9kaI+xWKayCGRRBr5S9Za7SOXQdJGybRhjLqa5kP//VnW2cSLo6wqHquJWVpM2M0Ad84ZyQXcHJh3wC2VLKvheVtF3oe57nZyWP0NTnZ7bBuwaovgAZ1fbsM6vqHbe9LEs6G6+pMt9o8sjKpSXJZn/Li9ttlDvUXhesk0i2SJvZgUc+E1MxUaFg0UYp0kuGz6p2qSAi01UaN4/a5Vkj1ucCUq+aBeVVVYp23UwLVKbEg1iH0AHGON5ztK1oA881BQvrM0VUolgZMktIAYjhDgwIDa6mxIpS/qScRGziGU4fW6sjw0gdrvzf1Ah9rqj8VqCDh8bD38wttL1jvZ2ztY8pKcEpGVC8lfl6unJrqJ9F11OUyySTVukLwHKd0IvgCG2Zi5AFg5sx5oviG1RNwD2wqVwDnzLxOnlKBVXnG4Sts7TfXHBQprnhUjWHP2JlDL404P7YEp58K6UGoTUbESM6iTzlSjmmxQbnsNjIRRC14SF7hLxXZllOpZXf90FsEGhVhPakwFzZmNCrArjgFnfqJQ02khemheSx7gpeQvGlx9iznFVgXTd8QkkAAaOH0chTxmsT+YbsPvB/Tl8c5CB0yuVSRxL2zdM5BK3pJX6n/C8NRspFgGDufZh5yM1aSq+IdcZGduQOXPcKxDuMfap8lfKExmZXJqXDUdAT2d2Jj+R/242WPbUlhOkdkYE+i0Hc1i7/8qSTDS+Kzddt5UHtljkVBjZU7/kFWWhb4L7f0T3UvU7l1rhRaqkeU+XKyHf7ZORjmdu2xAaJnnCsnf3bS5i/KxLeN83CA/sHsLXxtuPrybjM3YLwoMDumvyZzKg77pFcdHcG0r8PtEYLganz3HRhWNuP1+BkSjV7mzlo5Qt3exwd7Tjye+OMdDveCpjNjzdSgCQKQC3ya/rDihNbk4D4Lfz0/O9ynB+6p08DkF0bs4eWZc145BficClaex3xh1ko0HJ98A53h9UW6kK+fEHQa+T5Y7eZjhGC+A77zaQhfIdOs3vP2BCcx6d5NXSVP4Sts1ShgsqfKCREIJjujSeoRC6d9KlRlvclrIcU5UxzILPVR946Yh53fXNCCAeAZqw59xjWMNR7fFB85T3gZADsSwODj/jjMw5flOG4nhRna33HP5+kF0EFHSV1LWH7toh/17ImIfBN9pH6FlW9Ez7rrHUGOPcrmTAWPiIvLurq3ypNqKBg0Y8jMJzN5PGdbgCzUVdKbz1lm7nk436XPkXO0FBQXdd4fceoQDPFOP7beqaYvyckWutHYZ8/HTVUyoQ3O6MSl42X7KVS7zme0H4/B8=</diagram></mxfile>
+<mxfile modified="2022-09-03T05:13:00.608Z" host="app.diagrams.net" agent="5.0 (Macintosh)" etag="LIwttrEKktht_JzY8Ngf" version="20.2.8" type="github">
+  <diagram id="6a731a19-8d31-9384-78a2-239565b7b9f0" name="Page-1">
+    <mxGraphModel dx="1199" dy="1612" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" background="#ffffff" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="1a5ef1b7-31c8-c513-4392-862812419013-56" value="scheduled trigger" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.start_1;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="30" y="-794.5" width="220" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="1a5ef1b7-31c8-c513-4392-862812419013-57" value="get imdbID of all movies in trakt.tv watchlist, add to &quot;wantedMovies&quot; list" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="30" y="-714.5" width="220" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="1a5ef1b7-31c8-c513-4392-862812419013-58" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;" parent="1" source="1a5ef1b7-31c8-c513-4392-862812419013-56" target="1a5ef1b7-31c8-c513-4392-862812419013-57" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="72c683ca-9514-a802-bfd0-e5810f5e3b17-8" value="Get imdbID of all previously processed movies " style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="30" y="-634.5" width="220" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="72c683ca-9514-a802-bfd0-e5810f5e3b17-9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;" parent="1" source="1a5ef1b7-31c8-c513-4392-862812419013-57" target="72c683ca-9514-a802-bfd0-e5810f5e3b17-8" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="72c683ca-9514-a802-bfd0-e5810f5e3b17-44" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;jettySize=auto;orthogonalLoop=1;" parent="1" source="72c683ca-9514-a802-bfd0-e5810f5e3b17-10" target="72c683ca-9514-a802-bfd0-e5810f5e3b17-29" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="72c683ca-9514-a802-bfd0-e5810f5e3b17-10" value="Remove previously processed movies from &quot;wantedMovies&quot; list" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="30" y="-554.5" width="220" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="72c683ca-9514-a802-bfd0-e5810f5e3b17-11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;" parent="1" source="72c683ca-9514-a802-bfd0-e5810f5e3b17-8" target="72c683ca-9514-a802-bfd0-e5810f5e3b17-10" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="72c683ca-9514-a802-bfd0-e5810f5e3b17-24" value="Search Radarr for first imdbID in &quot;wantedMovies&quot; list " style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="250" y="-452" width="220" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="72c683ca-9514-a802-bfd0-e5810f5e3b17-48" value="yes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;exitPerimeter=0;jettySize=auto;orthogonalLoop=1;" parent="1" source="72c683ca-9514-a802-bfd0-e5810f5e3b17-29" target="72c683ca-9514-a802-bfd0-e5810f5e3b17-47" edge="1">
+          <mxGeometry x="-0.0013" y="-81" relative="1" as="geometry">
+            <mxPoint x="81" y="-81" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="72c683ca-9514-a802-bfd0-e5810f5e3b17-29" value="&quot;wantedMovies&quot;&lt;br&gt;list empty?" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.decision;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="90" y="-477" width="100" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="72c683ca-9514-a802-bfd0-e5810f5e3b17-18" value="no" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;jettySize=auto;orthogonalLoop=1;exitPerimeter=0;" parent="1" target="72c683ca-9514-a802-bfd0-e5810f5e3b17-24" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="190" y="-427" as="sourcePoint" />
+            <mxPoint x="750" y="-377" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="72c683ca-9514-a802-bfd0-e5810f5e3b17-49" value="no" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;exitPerimeter=0;jettySize=auto;orthogonalLoop=1;entryX=0.817;entryY=0.676;entryPerimeter=0;" parent="1" source="72c683ca-9514-a802-bfd0-e5810f5e3b17-34" target="72c683ca-9514-a802-bfd0-e5810f5e3b17-29" edge="1">
+          <mxGeometry x="-0.718" relative="1" as="geometry">
+            <mxPoint x="171" y="-404" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="360" y="-257" />
+              <mxPoint x="172" y="-257" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="72c683ca-9514-a802-bfd0-e5810f5e3b17-34" value="is movie downloaded?" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.decision;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="310" y="-377" width="100" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="72c683ca-9514-a802-bfd0-e5810f5e3b17-35" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;entryPerimeter=0;jettySize=auto;orthogonalLoop=1;" parent="1" source="72c683ca-9514-a802-bfd0-e5810f5e3b17-24" target="72c683ca-9514-a802-bfd0-e5810f5e3b17-34" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="72c683ca-9514-a802-bfd0-e5810f5e3b17-45" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;jettySize=auto;orthogonalLoop=1;" parent="1" source="72c683ca-9514-a802-bfd0-e5810f5e3b17-36" target="72c683ca-9514-a802-bfd0-e5810f5e3b17-39" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="72c683ca-9514-a802-bfd0-e5810f5e3b17-36" value="Add movie to Handbrake watchfolder" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="480" y="-350.5" width="220" height="47" as="geometry" />
+        </mxCell>
+        <mxCell id="72c683ca-9514-a802-bfd0-e5810f5e3b17-37" value="yes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=1;exitY=0.5;exitPerimeter=0;entryX=0;entryY=0.5;jettySize=auto;orthogonalLoop=1;" parent="1" source="72c683ca-9514-a802-bfd0-e5810f5e3b17-34" target="72c683ca-9514-a802-bfd0-e5810f5e3b17-36" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="72c683ca-9514-a802-bfd0-e5810f5e3b17-46" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.683;entryY=0.824;entryPerimeter=0;jettySize=auto;orthogonalLoop=1;" parent="1" source="72c683ca-9514-a802-bfd0-e5810f5e3b17-39" target="72c683ca-9514-a802-bfd0-e5810f5e3b17-29" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="72c683ca-9514-a802-bfd0-e5810f5e3b17-39" value="Add imdbID to &quot;processedMovies&quot; list" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="482" y="-274.5" width="216" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="72c683ca-9514-a802-bfd0-e5810f5e3b17-47" value="End" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.start_1;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="30" y="-185" width="220" height="50" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
