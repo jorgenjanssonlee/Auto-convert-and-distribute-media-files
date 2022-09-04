@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2022-09-04T00:59:25.098Z" agent="5.0 (Macintosh)" etag="S8J4EaiYvYPsI3Uvd1G4" version="20.2.8" type="github">
+<mxfile host="app.diagrams.net" modified="2022-09-04T01:03:52.909Z" agent="5.0 (Macintosh)" etag="RkhXfNA4qqAhJWmNzBm5" version="20.2.8" type="github">
   <diagram id="kZtPU7Hmq_8cMO_7oV8p" name="Page-1">
-    <mxGraphModel dx="899" dy="589" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1139" dy="589" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -12,7 +12,7 @@
             <mxPoint x="-31" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="UAZxKlSuEchCdSORoiPl-1" value="&lt;div&gt;&lt;b&gt;Node.js&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;height: 152px;&quot; class=&quot;docker_readmore readmore-js-section readmore-js-expanded&quot;&gt;/watch -&amp;gt; mnt/user/Media/Handbrake_hotfolder/watch/&lt;/span&gt;&lt;b&gt;&lt;/b&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;align=left;verticalAlign=top;" vertex="1" parent="1">
+        <mxCell id="UAZxKlSuEchCdSORoiPl-1" value="&lt;div&gt;&lt;b&gt;Node.js&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;height: 152px;&quot; class=&quot;docker_readmore readmore-js-section readmore-js-expanded&quot;&gt;/watch -&amp;gt; mnt/user/Media/Handbrake_hotfolder/watch/&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;height: 152px;&quot; class=&quot;docker_readmore readmore-js-section readmore-js-expanded&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;height: 152px;&quot; class=&quot;docker_readmore readmore-js-section readmore-js-expanded&quot;&gt;??? -&amp;gt; /usr/local/emhttp/webGui/scripts/notify&lt;br&gt;&lt;/span&gt;&lt;b&gt;&lt;/b&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;align=left;verticalAlign=top;" vertex="1" parent="1">
           <mxGeometry x="410" y="340" width="140" height="140" as="geometry" />
         </mxCell>
         <mxCell id="UAZxKlSuEchCdSORoiPl-2" value="&lt;div&gt;&lt;b&gt;Handbrake&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;height: 152px;&quot; class=&quot;docker_readmore readmore-js-section readmore-js-expanded&quot;&gt;/watch -&amp;gt; mnt/user/Media/Handbrake_hotfolder/watch/&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;height: 152px;&quot; class=&quot;docker_readmore readmore-js-section readmore-js-expanded&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;height: 152px;&quot; class=&quot;docker_readmore readmore-js-section readmore-js-expanded&quot;&gt;/storage -&amp;gt; /mnt/user/Media&lt;/span&gt;&lt;span style=&quot;height: 152px;&quot; class=&quot;docker_readmore readmore-js-section readmore-js-expanded&quot;&gt;&lt;/span&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;align=left;verticalAlign=top;" vertex="1" parent="1">
@@ -23,7 +23,7 @@
         </mxCell>
         <mxCell id="UAZxKlSuEchCdSORoiPl-9" value="source file path" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="UAZxKlSuEchCdSORoiPl-5">
           <mxGeometry x="-0.4884" y="9" relative="1" as="geometry">
-            <mxPoint x="1" y="16" as="offset" />
+            <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="UAZxKlSuEchCdSORoiPl-4" value="&lt;div&gt;&lt;b&gt;Radarr&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;height: 190px;&quot; class=&quot;docker_readmore readmore-js-section readmore-js-expanded&quot;&gt;/media -&amp;gt; mnt/user/Media/Movies/&lt;/span&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;align=left;verticalAlign=top;" vertex="1" parent="1">
