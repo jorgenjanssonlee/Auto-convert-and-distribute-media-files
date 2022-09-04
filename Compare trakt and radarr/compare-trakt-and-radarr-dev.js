@@ -21,6 +21,7 @@ function main(){
 
 
 function getTraktMovies(callback){
+	// TO DO: check if api key is still valid and refresh if not
   request({
     method: 'GET',
     url: 'https://api.trakt.tv/users/' + config.trakt.traktFriendID +'/watchlist/movies',
