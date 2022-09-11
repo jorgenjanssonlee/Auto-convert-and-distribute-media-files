@@ -1,4 +1,4 @@
-const config = require('./config');
+const config = require('../config/config');
 
 var { exec } = require('child_process');
 var request = require('request');
@@ -12,7 +12,7 @@ function main(){
 		getRadarrMovies( (radarrMovies) => {
       compareResults(traktMovies, radarrMovies, (movieMatches) => { // TODO: add count of files to process
 				createSymlinkForHandbrake(movieMatches);
-				console.log("Movie processing completed");
+				console.log("Movie processing completed " + new Date(new Date()+3600*1000*10).toISOString());
 				});
       });
 		});
@@ -22,6 +22,7 @@ function main(){
 
 function getTraktMovies(callback){
 	// TO DO: check if api key is still valid and refresh if not
+	console.log("starting getTraktMovies");
   request({
     method: 'GET',
     url: 'https://api.trakt.tv/users/' + config.trakt.traktFriendID +'/watchlist/movies',
@@ -30,15 +31,16 @@ function getTraktMovies(callback){
       'trakt-api-version': '2',
       'trakt-api-key': config.trakt.traktClientID
     }}, function (error, response, body) {
-      // console.log('Status:', response.statusCode);
-      // console.log('Headers:', JSON.stringify(response.headers));
-      // console.log('Response:', body);
+       console.log('Status:', response.statusCode);
+       //console.log('Headers:', JSON.stringify(response.headers));
+       //console.log('Response:', body);
   	  callback(JSON.parse(body));
     });
 }
 
 
 function getRadarrMovies(callback){
+	console.log("starting getRadarrMovies");
   request({
     method: 'GET',
     url: 'http://' + config.radarr.ip + ':' + config.radarr.port + '/api/v3/movie',
@@ -46,20 +48,29 @@ function getRadarrMovies(callback){
       'Content-Type': 'application/json',
       'X-API-Key': config.radarr.apikey
     }}, function (error, response, body) {
-      // console.log('Status:', response.statusCode);
-      // console.log('Headers:', JSON.stringify(response.headers));
-      // console.log('Response:', body);
-      // callback(new Error('bad resp.'));
+       console.log('Status:', response.statusCode);
+       //console.log('Headers:', JSON.stringify(response.headers));
+       //console.log('Response:', body);
+       callback(new Error('bad resp.'));
       callback(JSON.parse(body));
     });
 }
 
 
 function compareResults(traktMovies, radarrMovies, callback){
+	console.log("starting compareResults");
 	var movieMatches = []; // array of imdbID and file path for movies matches between trakt and radarr that has not been previously processed
 	// get array of previously processed movies to avoid double-processing
+	if (!fs.existsSync(config.script.movieHistory)) {
+		try {
+			fs.appendFileSync(config.script.movieHistory, "These movies have already been processed and will be ignored" + "\n");
+		} catch (err) {
+			console.log(err);
+		}
+	}
 	if (fs.existsSync(config.script.movieHistory)) {
 		try {
+			console.log("movieHistory exists");
 			var data = fs.readFileSync(config.script.movieHistory);
 			var movieHistory = data.toString().split("\n");
 			movieHistory.splice(-1,1);
@@ -80,6 +91,7 @@ function compareResults(traktMovies, radarrMovies, callback){
 					}
 				}
 			};
+			console.log("Matching movies " + movieMatches);
 			callback(movieMatches);
 		} catch (err) {
 			console.error(err);
@@ -91,7 +103,7 @@ function compareResults(traktMovies, radarrMovies, callback){
 function createSymlinkForHandbrake(movies){
 	// create symlink in Handbrake watch folder with volume mapping substitution
 	// then add imdb of movie to history log to prevent re-processing
-	// Node docker needs the exact smae Watch folder mapping as Handbrake is using
+	// Node docker needs the exact same Watch folder mapping as Handbrake is using
 	var completedSymlinks = "";
   for (var i = 0; i < movies.length; i++) {
 		try {
