@@ -5,4 +5,4 @@ COPY ./app/package.json .
 COPY ./app/package-lock.json .
 RUN npm install
 COPY ./app/ .
-CMD [ "node", "server.js" ]
+CMD [ "node", "compare-trakt-and-radarr.js" ]

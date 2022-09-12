@@ -4,7 +4,6 @@ create an Trakt API App at: https://trakt.tv/oauth/applications/new
 
 /*  Docker run command
 docker run -d --name compare-trakt-and-radarr \
--p <host port>:8080 \
 -v "<host path>"":"/config" \
 -e traktFriendID="<friends trakt ID>" \
 -e traktClientID="<from Trakt API App>" \
@@ -18,12 +17,26 @@ docker run -d --name compare-trakt-and-radarr \
 compare-trakt-and-radarr
 */
 
-
 var { exec } = require('child_process');
 var request = require('request');
 var fs = require('fs');
 
-main();
+if (process.env.traktFriendID 
+	&& process.env.traktClientID 
+	&& process.env.radarrIP 
+	&& process.env.radarrPort
+	&& process.env.radarrApiKey
+	&& process.env.hbWatchFolder
+	&& process.env.hbVolumeMappingHandbrake
+	&& process.env.hbVolumeMappingRadarr
+	&& process.env.movieHistory
+	&& fs.existsSync('/config')) {
+		console.log("All env variables and volume mappings are present, staring script");
+		main();
+	} else {
+		console.log("Environment variables or volume mappings are missing, aborting. Check your docker run command")
+	};
+
 
 function main(){
 	console.log("Starting movie processing " + new Date(new Date()+3600*1000*10).toISOString());
@@ -135,7 +148,8 @@ function createSymlinkForHandbrake(movies){
 			console.log(err);
 		}
   };
-  /* TO DO: need differnt notification method, can't really access unraid notifications from wihtin docker (without PHP)
+  
+  /* TO DO: need differnt notification method, can't really access unraid notification systsem from wihtin docker (without PHP)
 	// send unraid notification with list of created symlinks
 	if (completedSymlinks) {
 		var unraidNotification = "/usr/local/emhttp/webGui/scripts/notify -e 'unRAID Server Notice' -s 'Handbrake Symlink creation' -d '" + completedSymlinks + "' -i 'normal'";
