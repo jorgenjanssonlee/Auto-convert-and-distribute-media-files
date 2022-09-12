@@ -1,5 +1,8 @@
+/Compare trakt and radarr/docker run command.txt
+/Compare trakt and radarr/config
 /Compare trakt and radarr/config/config.js
 /Compare trakt and radarr/config/config.bak
+/Compare trakt and radarr/config/configtemplate.js
 /Compare trakt and radarr/app/get-trakt-device-token-node.js
 /Compare trakt and radarr/app/refreshTraktAccessToken.js
 /Compare trakt and radarr/app/node_modules/

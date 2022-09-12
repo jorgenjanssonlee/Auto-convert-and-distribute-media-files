@@ -1,4 +1,23 @@
-const config = require('../config/config');
+/* Prerequisite
+create an Trakt API App at: https://trakt.tv/oauth/applications/new
+*/
+
+/*  Docker run command
+docker run -d --name compare-trakt-and-radarr \
+-p <host port>:8080 \
+-v "<host path>"":"/config" \
+-e traktFriendID="<friends trakt ID>" \
+-e traktClientID="<from Trakt API App>" \
+-e radarrIP="<http://radarr.ip.address>" \
+-e radarrPort="<7878>" \
+-e radarrApiKey="<Radarr API Key>" \
+-e hbWatchFolder="<path of Handbrake watch folder from this container>" \
+-e hbVolumeMappingHandbrake="<Media storage path from Handbrake container>" \
+-e hbVolumeMappingRadarr="<Media storage path from Radarr container>" \
+-e movieHistory="path to movieHistory.txt from within this container" \
+compare-trakt-and-radarr
+*/
+
 
 var { exec } = require('child_process');
 var request = require('request');
@@ -21,15 +40,14 @@ function main(){
 
 
 function getTraktMovies(callback){
-	// TO DO: check if api key is still valid and refresh if not
 	console.log("starting getTraktMovies");
   request({
     method: 'GET',
-    url: 'https://api.trakt.tv/users/' + config.trakt.traktFriendID +'/watchlist/movies',
+    url: 'https://api.trakt.tv/users/' + process.env.traktFriendID +'/watchlist/movies',
     headers: {
       'Content-Type': 'application/json',
       'trakt-api-version': '2',
-      'trakt-api-key': config.trakt.traktClientID
+      'trakt-api-key': process.env.traktClientID
     }}, function (error, response, body) {
        console.log('Status:', response.statusCode);
        //console.log('Headers:', JSON.stringify(response.headers));
@@ -43,10 +61,10 @@ function getRadarrMovies(callback){
 	console.log("starting getRadarrMovies");
   request({
     method: 'GET',
-    url: 'http://' + config.radarr.ip + ':' + config.radarr.port + '/api/v3/movie',
+    url: process.env.radarrIP + ':' + process.env.radarrPort + '/api/v3/movie',
     headers: {
       'Content-Type': 'application/json',
-      'X-API-Key': config.radarr.apikey
+      'X-API-Key': process.env.radarrApiKey
     }}, function (error, response, body) {
        console.log('Status:', response.statusCode);
        //console.log('Headers:', JSON.stringify(response.headers));
@@ -61,17 +79,17 @@ function compareResults(traktMovies, radarrMovies, callback){
 	console.log("starting compareResults");
 	var movieMatches = []; // array of imdbID and file path for movies matches between trakt and radarr that has not been previously processed
 	// get array of previously processed movies to avoid double-processing
-	if (!fs.existsSync(config.script.movieHistory)) {
+	if (!fs.existsSync(process.env.movieHistory)) {
 		try {
-			fs.appendFileSync(config.script.movieHistory, "These movies have already been processed and will be ignored" + "\n");
+			fs.appendFileSync(process.env.movieHistory, "These movies have already been processed and will be ignored" + "\n");
 		} catch (err) {
 			console.log(err);
 		}
 	}
-	if (fs.existsSync(config.script.movieHistory)) {
+	if (fs.existsSync(process.env.movieHistory)) {
 		try {
 			console.log("movieHistory exists");
-			var data = fs.readFileSync(config.script.movieHistory);
+			var data = fs.readFileSync(process.env.movieHistory);
 			var movieHistory = data.toString().split("\n");
 			movieHistory.splice(-1,1);
 
@@ -91,7 +109,7 @@ function compareResults(traktMovies, radarrMovies, callback){
 					}
 				}
 			};
-			console.log("Matching movies " + movieMatches);
+			console.log("Matching movies " + JSON.stringify(movieMatches, null, 2));
 			callback(movieMatches);
 		} catch (err) {
 			console.error(err);
@@ -107,12 +125,12 @@ function createSymlinkForHandbrake(movies){
 	var completedSymlinks = "";
   for (var i = 0; i < movies.length; i++) {
 		try {
-			var destFile = config.handbrake.hbWatchFolder + "/" + movies[i].fileName;
-	    var remappedSourceFile = movies[i].folderPath.replace(config.handbrake.hbVolumeMappingRadarr, config.handbrake.hbVolumeMappingHandbrake) + "/" + movies[i].fileName;
+			var destFile = process.env.hbWatchFolder + "/" + movies[i].fileName;
+	    var remappedSourceFile = movies[i].folderPath.replace(process.env.hbVolumeMappingRadarr, process.env.hbVolumeMappingHandbrake) + "/" + movies[i].fileName;
 	    fs.symlinkSync(remappedSourceFile, destFile);
 			console.log("symlink created: " + destFile);
 			completedSymlinks += destFile + "\n";
-			fs.appendFileSync(config.script.movieHistory, movies[i].imdbId + "\n"); // log processed movies to file
+			fs.appendFileSync(process.env.movieHistory, movies[i].imdbId + "\n"); // log processed movies to file
 		} catch (err) {
 			console.log(err);
 		}
