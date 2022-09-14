@@ -3,18 +3,18 @@ create an Trakt API App at: https://trakt.tv/oauth/applications/new
 */
 
 /*  Docker run command
-docker run -d --name compare-trakt-and-radarr \
--v "<host path to app config location>":"/config" \
--v "<host path of watch folder from Handbrake container>":"/watch" \
--e traktFriendID="<friends trakt ID>" \
--e traktClientID="<from Trakt API App>" \
--e radarrIP="<http://radarr.ip.address>" \
--e radarrPort="<7878>" \
--e radarrApiKey="<Radarr API Key>" \
--e hbVolumeMappingHandbrake="<Media storage path from Handbrake container>" \
--e hbVolumeMappingRadarr="<Media storage path from Radarr container>" \
--e movieHistory="path to movieHistory.txt from within this container" \
-compare-trakt-and-radarr
+	docker run -d --name compare-trakt-and-radarr \
+	-v "<host path to app config location>":"/config" \
+	-v "<host path of watch folder from Handbrake container>":"/watch" \
+	-e traktFriendID="<friends trakt ID>" \
+	-e traktClientID="<from Trakt API App>" \
+	-e radarrIP="<http://radarr.ip.address>" \
+	-e radarrPort="<7878>" \
+	-e radarrApiKey="<Radarr API Key>" \
+	-e hbVolumeMappingHandbrake="<Media storage path from Handbrake container>" \
+	-e hbVolumeMappingRadarr="<Media storage path from Radarr container>" \
+	-e movieHistory="path to movieHistory.txt from within this container" \
+	compare-trakt-and-radarr
 */
 
 var { exec } = require('child_process');
