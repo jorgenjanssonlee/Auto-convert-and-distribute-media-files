@@ -4,13 +4,13 @@ create an Trakt API App at: https://trakt.tv/oauth/applications/new
 
 /*  Docker run command
 docker run -d --name compare-trakt-and-radarr \
--v "<host path>"":"/config" \
+-v "<host path to app config location>":"/config" \
+-v "<host path of watch folder from Handbrake container>":"/watch" \
 -e traktFriendID="<friends trakt ID>" \
 -e traktClientID="<from Trakt API App>" \
 -e radarrIP="<http://radarr.ip.address>" \
 -e radarrPort="<7878>" \
 -e radarrApiKey="<Radarr API Key>" \
--e hbWatchFolder="<path of Handbrake watch folder from this container>" \
 -e hbVolumeMappingHandbrake="<Media storage path from Handbrake container>" \
 -e hbVolumeMappingRadarr="<Media storage path from Radarr container>" \
 -e movieHistory="path to movieHistory.txt from within this container" \
@@ -26,12 +26,12 @@ if (process.env.traktFriendID
 	&& process.env.radarrIP 
 	&& process.env.radarrPort
 	&& process.env.radarrApiKey
-	&& process.env.hbWatchFolder
 	&& process.env.hbVolumeMappingHandbrake
 	&& process.env.hbVolumeMappingRadarr
 	&& process.env.movieHistory
-	&& fs.existsSync('/config')) {
-		console.log("All env variables and volume mappings are present, staring script");
+	&& fs.existsSync('/config')
+	&& fs.existsSync('/watch')) {
+		console.log("All env variables and volume mappings are present, starting script");
 		main();
 	} else {
 		console.log("Environment variables or volume mappings are missing, aborting. Check your docker run command")
@@ -134,11 +134,11 @@ function compareResults(traktMovies, radarrMovies, callback){
 function createSymlinkForHandbrake(movies){
 	// create symlink in Handbrake watch folder with volume mapping substitution
 	// then add imdb of movie to history log to prevent re-processing
-	// Node docker needs the exact same Watch folder mapping as Handbrake is using
+	// Node docker needs the exact same /watch folder mapping as Handbrake is using
 	var completedSymlinks = "";
   for (var i = 0; i < movies.length; i++) {
 		try {
-			var destFile = process.env.hbWatchFolder + "/" + movies[i].fileName;
+			var destFile = "/watch/" + movies[i].fileName;
 	    var remappedSourceFile = movies[i].folderPath.replace(process.env.hbVolumeMappingRadarr, process.env.hbVolumeMappingHandbrake) + "/" + movies[i].fileName;
 	    fs.symlinkSync(remappedSourceFile, destFile);
 			console.log("symlink created: " + destFile);
