@@ -1,5 +1,8 @@
-/* Prerequisite
-create an Trakt API App at: https://trakt.tv/oauth/applications/new
+/* Prerequisites
+Trakt API App: https://trakt.tv/oauth/applications/new
+Radarr API key: https://wiki.servarr.com/radarr/settings#security
+Handbrake container with automated watch folder: https://hub.docker.com/r/jlesage/handbrake/: 
+Slack Webhook (optional): https://api.slack.com/messaging/webhooks
 */
 
 /*  Docker run command
@@ -13,13 +16,17 @@ create an Trakt API App at: https://trakt.tv/oauth/applications/new
 	-e radarrApiKey="<Radarr API Key>" \
 	-e hbVolumeMappingHandbrake="<Media storage path from Handbrake container>" \
 	-e hbVolumeMappingRadarr="<Media storage path from Radarr container>" \
+	-e slackWebhookUrl="https://hooks.slack.com/services/RANDOMCHARS" \
 	compare-trakt-and-radarr
 */
 
 const request = require('request');
 const fs = require('fs');
 const movieHistoryFile = "/config/moviehistory.txt";
+const SlackNotify = require('slack-notify');
+const slack = SlackNotify(process.env.slackWebhookUrl); // Configure Slack notifications
 
+// Check that all mandatory docker environment variables are configured
 if (process.env.traktFriendID
 	&& process.env.traktClientID
 	&& process.env.radarrIP
@@ -29,18 +36,23 @@ if (process.env.traktFriendID
 	&& process.env.hbVolumeMappingRadarr
 	&& fs.existsSync('/config')
 	&& fs.existsSync('/watch')) {
-	console.log("All env variables and volume mappings are present, starting script");
-	main();
+		console.log("All required env variables and volume mappings are present, starting script");
+		if (process.env.slackWebhookUrl) {
+			console.log('Slack notifications enabled');
+		};
+		main();
 } else {
-	console.log("Environment variables or volume mappings are missing, aborting. Check your docker run command")
+	console.log("Environment variables or volume mappings are missing, aborting. Check your docker run command");
+	return;
 };
+
 
 
 function main() {
 	console.log("Starting movie processing " + new Date(new Date() + 3600 * 1000 * 10).toISOString());
 	getTraktMovies((traktMovies) => {
 		getRadarrMovies((radarrMovies) => {
-			compareResults(traktMovies, radarrMovies, (movieMatches) => { // TODO: add count of files to process
+			compareResults(traktMovies, radarrMovies, (movieMatches) => {
 				createSymlinkForHandbrake(movieMatches);
 				console.log("Movie processing completed " + new Date(new Date() + 3600 * 1000 * 10).toISOString());
 			});
@@ -51,7 +63,7 @@ function main() {
 
 
 function getTraktMovies(callback) {
-	console.log("starting getTraktMovies");
+	console.log("Starting getTraktMovies");
 	request({
 		method: 'GET',
 		url: 'https://api.trakt.tv/users/' + process.env.traktFriendID + '/watchlist/movies',
@@ -63,7 +75,7 @@ function getTraktMovies(callback) {
 	}, function (error, response, body) {
 		console.log('Status:', response.statusCode);
 		if (error) {
-			callback(new Error('bad response'));
+			callback(new Error('Trakt API error'));
 			return;
 		}
 		callback(JSON.parse(body));
@@ -72,7 +84,7 @@ function getTraktMovies(callback) {
 
 
 function getRadarrMovies(callback) {
-	console.log("starting getRadarrMovies");
+	console.log("Starting getRadarrMovies");
 	request({
 		method: 'GET',
 		url: process.env.radarrIP + ':' + process.env.radarrPort + '/api/v3/movie',
@@ -83,7 +95,7 @@ function getRadarrMovies(callback) {
 	}, function (error, response, body) {
 		console.log('Status:', response.statusCode);
 		if (error) {
-			callback(new Error('bad response'));
+			callback(new Error('Radarr API error'));
 			return;
 		}
 		callback(JSON.parse(body));
@@ -92,7 +104,7 @@ function getRadarrMovies(callback) {
 
 
 function compareResults(traktMovies, radarrMovies, callback) {
-	console.log("starting compareResults");
+	console.log("Starting compareResults");
 	var movieMatches = []; // array of imdbID and file path for movies matches between trakt and radarr that has not been previously processed
 	// get array of previously processed movies to avoid double-processing
 	if (!fs.existsSync(movieHistoryFile)) {
@@ -100,6 +112,7 @@ function compareResults(traktMovies, radarrMovies, callback) {
 			fs.appendFileSync(movieHistoryFile, "These movies have already been processed and will be ignored" + "\n");
 		} catch (err) {
 			console.log(err);
+			return;
 		}
 	}
 	if (fs.existsSync(movieHistoryFile)) {
@@ -129,6 +142,7 @@ function compareResults(traktMovies, radarrMovies, callback) {
 			callback(movieMatches);
 		} catch (err) {
 			console.error(err);
+			return;
 		}
 	}
 }
@@ -151,20 +165,12 @@ function createSymlinkForHandbrake(movies) {
 			console.log(err);
 		}
 	};
-
-	/* TO DO: need differnt notification method, can't really access unraid notification system from wihtin docker (without PHP)
-	  // send unraid notification with list of created symlinks
-	  if (completedSymlinks) {
-		  var unraidNotification = "/usr/local/emhttp/webGui/scripts/notify -e 'unRAID Server Notice' -s 'Handbrake Symlink creation' -d '" + completedSymlinks + "' -i 'normal'";
-		  exec(unraidNotification, (err, stdout, stderr) => {
-			  if (err) {
-				  console.log(err);
-				  return;
-			  }
-			  // the *entire* stdout and stderr (buffered)
-		  // console.log(`stdout: ${stdout}`);
-		  // console.log(`stderr: ${stderr}`);
-		  });
-	  }
-	  */
+	if (process.env.slackWebhookUrl) {
+		slack.send('Symlinks created for Handbrake processing: ' + completedSymlinks)
+			.then(() => {
+				console.log('Sent Slack notification');
+			}).catch((err) => {
+				console.error(err);
+			});
+	}
 }

@@ -1,7 +1,3 @@
 /*.DS
-/Compare trakt and radarr/docker run command.txt
-/Compare trakt and radarr/app/get-trakt-device-token-node.js
-/Compare trakt and radarr/app/refreshTraktAccessToken.js
 /Compare trakt and radarr/app/node_modules/
 /Compare trakt and radarr/docker build commands.txt
-Auto-convert-and-distribute-media-files/.gitignore
