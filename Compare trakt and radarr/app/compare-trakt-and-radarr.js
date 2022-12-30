@@ -166,7 +166,12 @@ function createSymlinkForHandbrake(movies) {
 		}
 	};
 	if (process.env.slackWebhookUrl) {
-		slack.send('Symlinks created for Handbrake processing: ' + completedSymlinks)
+		if (completedSymlinks == "") {
+			var notificationMessage = "Compare trakt and radarr complete, no movies to process";
+		} else {
+			var notificationMessage = 'Compare trakt and radarr complete, Symlinks created for Handbrake processing: \n' + completedSymlinks;
+		};
+		slack.send(notificationMessage)
 			.then(() => {
 				console.log('Sent Slack notification');
 			}).catch((err) => {
