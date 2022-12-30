@@ -50,7 +50,13 @@ if (process.env.traktFriendID
 		if (process.env.slackWebhookUrl) {
 			console.log('Slack notifications enabled');
 		};
-		main();
+		try {
+			main();
+		} catch (error) {
+			console.log(error);
+			return;
+		}
+		
 } else {
 	console.log("Environment variables or volume mappings are missing, aborting. Check your docker run command");
 	return;
@@ -60,14 +66,19 @@ if (process.env.traktFriendID
 
 function main() {
 	console.log("Starting movie processing " + new Date(new Date() + 3600 * 1000 * 10).toISOString());
-	getTraktMovies((traktMovies) => {
-		getRadarrMovies((radarrMovies) => {
-			compareResults(traktMovies, radarrMovies, (movieMatches) => {
-				createSymlinkForHandbrake(movieMatches);
-				console.log("Movie processing completed " + new Date(new Date() + 3600 * 1000 * 10).toISOString());
+	try {
+		getTraktMovies((traktMovies) => {
+			getRadarrMovies((radarrMovies) => {
+				compareResults(traktMovies, radarrMovies, (movieMatches) => {
+					createSymlinkForHandbrake(movieMatches);
+					console.log("Movie processing completed " + new Date(new Date() + 3600 * 1000 * 10).toISOString());
+				});
 			});
 		});
-	});
+	} catch (error) {
+		console.log(error);
+		return;
+	}
 }
 
 
@@ -84,7 +95,7 @@ function getTraktMovies(callback) {
 		}
 	}, function (error, response, body) {
 		console.log('Status:', response.statusCode);
-		if (error) {
+		if (response.statusCode != '200') {
 			callback(new Error('Trakt API error'));
 			return;
 		}
@@ -104,7 +115,7 @@ function getRadarrMovies(callback) {
 		}
 	}, function (error, response, body) {
 		console.log('Status:', response.statusCode);
-		if (error) {
+		if (response.statusCode != '200') {
 			callback(new Error('Radarr API error'));
 			return;
 		}
