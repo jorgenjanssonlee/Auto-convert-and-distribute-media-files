@@ -22,9 +22,18 @@ Slack Webhook (optional): https://api.slack.com/messaging/webhooks
 
 const request = require('request');
 const fs = require('fs');
-const movieHistoryFile = "/config/moviehistory.txt";
 const SlackNotify = require('slack-notify');
 const slack = SlackNotify(process.env.slackWebhookUrl); // Configure Slack notifications
+
+// Allow for Dev folder mapping if script is running outside docker container
+var NODE_ENV = process.env.NODE_ENV;
+var configFolder = "/config";
+var watchFolder = "/watch";
+if (NODE_ENV == "Dev") {
+	configFolder = process.env.configFolder;
+	watchFolder = process.env.watchFolder;
+};
+const movieHistoryFile = configFolder + "/moviehistory.txt";
 
 // Check that all mandatory docker environment variables are configured
 if (process.env.traktFriendID
@@ -34,8 +43,9 @@ if (process.env.traktFriendID
 	&& process.env.radarrApiKey
 	&& process.env.hbVolumeMappingHandbrake
 	&& process.env.hbVolumeMappingRadarr
-	&& fs.existsSync('/config')
-	&& fs.existsSync('/watch')) {
+	&& fs.existsSync(configFolder)
+	&& fs.existsSync(watchFolder)
+	) {
 		console.log("All required env variables and volume mappings are present, starting script");
 		if (process.env.slackWebhookUrl) {
 			console.log('Slack notifications enabled');
@@ -155,7 +165,7 @@ function createSymlinkForHandbrake(movies) {
 	var completedSymlinks = "";
 	for (var i = 0; i < movies.length; i++) {
 		try {
-			var destFile = "/watch/" + movies[i].fileName;
+			var destFile = watchFolder + "/" + movies[i].fileName;
 			var remappedSourceFile = movies[i].folderPath.replace(process.env.hbVolumeMappingRadarr, process.env.hbVolumeMappingHandbrake) + "/" + movies[i].fileName;
 			fs.symlinkSync(remappedSourceFile, destFile);
 			console.log("symlink created: " + destFile);
