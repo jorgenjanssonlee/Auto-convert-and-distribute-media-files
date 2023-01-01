@@ -1,1 +1,89 @@
-<mxfile host="app.diagrams.net" modified="2023-01-01T23:10:49.626Z" agent="5.0 (Macintosh)" version="20.2.8" etag="lFknpjs9Lg4nIyLRQHQL" type="github"><diagram id="KX5i_yzqqluhp9rm0kMS">UzV2zq1wL0osyPDNT0nNUTV2VTV2LsrPL4GwciucU3NyVI0MMlNUjV1UjYwMgFjVyA2HrCFY1qAgsSg1rwSLBiADYTaQg2Y1AA==</diagram></mxfile>
+<mxfile host="app.diagrams.net" modified="2023-01-01T23:16:32.636Z" agent="5.0 (Macintosh)" etag="qQ5I9hhKoF9H382cZ-Hc" version="20.2.8" type="github">
+  <diagram id="KX5i_yzqqluhp9rm0kMS" name="Page-1">
+    <mxGraphModel dx="1186" dy="540" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="J65Vx8tfwJLfjUJS7pAZ-1" value="&lt;div&gt;Handbrake&lt;/div&gt;" style="shape=umlActor;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;html=1;" vertex="1" parent="1">
+          <mxGeometry x="850" y="30" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="J65Vx8tfwJLfjUJS7pAZ-2" value="Docker script" style="shape=umlActor;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;html=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="30" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="J65Vx8tfwJLfjUJS7pAZ-3" value="Match Friends Trakt Watchlist with downloaded movies in Radarr" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="150" y="35" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="J65Vx8tfwJLfjUJS7pAZ-4" style="edgeStyle=none;rounded=0;html=1;exitX=0.561;exitY=0.681;exitPerimeter=0;startArrow=none;startFill=0;endArrow=none;endFill=0;jettySize=auto;orthogonalLoop=1;strokeWidth=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="J65Vx8tfwJLfjUJS7pAZ-2" target="J65Vx8tfwJLfjUJS7pAZ-3">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="45" y="145" as="sourcePoint" />
+            <mxPoint x="120" y="60" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="J65Vx8tfwJLfjUJS7pAZ-5" value="Create symlink for matches in Handbrake watch folder" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="370" y="35" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="J65Vx8tfwJLfjUJS7pAZ-6" value="Convert files in watch folder" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="590" y="35" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="J65Vx8tfwJLfjUJS7pAZ-7" style="edgeStyle=none;rounded=0;html=1;exitX=0.43;exitY=0.652;exitPerimeter=0;entryX=1;entryY=0.5;startArrow=none;startFill=0;endArrow=none;endFill=0;jettySize=auto;orthogonalLoop=1;strokeWidth=1;entryDx=0;entryDy=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="J65Vx8tfwJLfjUJS7pAZ-1" target="J65Vx8tfwJLfjUJS7pAZ-6">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="874.9999999999998" y="-220" as="sourcePoint" />
+            <mxPoint x="719.4974746830626" y="-69.7487373415313" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="J65Vx8tfwJLfjUJS7pAZ-8" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" style="html=1;verticalAlign=middle;endArrow=open;dashed=1;endSize=8;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="J65Vx8tfwJLfjUJS7pAZ-3" target="J65Vx8tfwJLfjUJS7pAZ-5">
+          <mxGeometry x="-0.1429" relative="1" as="geometry">
+            <mxPoint x="300" y="-45.5" as="sourcePoint" />
+            <mxPoint x="490" y="-45" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="J65Vx8tfwJLfjUJS7pAZ-9" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" style="html=1;verticalAlign=middle;endArrow=open;dashed=1;endSize=8;exitX=1;exitY=0.5;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="J65Vx8tfwJLfjUJS7pAZ-5" target="J65Vx8tfwJLfjUJS7pAZ-6">
+          <mxGeometry x="-0.1429" relative="1" as="geometry">
+            <mxPoint x="300" y="-45.5" as="sourcePoint" />
+            <mxPoint x="600.0000000000032" y="-45" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="J65Vx8tfwJLfjUJS7pAZ-10" style="edgeStyle=none;rounded=0;html=1;exitX=0.5;exitY=0.5;exitPerimeter=0;entryX=0;entryY=0.5;endArrow=none;endFill=0;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="J65Vx8tfwJLfjUJS7pAZ-11" target="J65Vx8tfwJLfjUJS7pAZ-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="J65Vx8tfwJLfjUJS7pAZ-11" value="User" style="shape=umlActor;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;html=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="255" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="J65Vx8tfwJLfjUJS7pAZ-12" value="Attach USB drive to unRaid NAS" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="150" y="250" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="J65Vx8tfwJLfjUJS7pAZ-13" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" style="html=1;verticalAlign=middle;endArrow=open;dashed=1;endSize=8;exitX=0;exitY=0.5;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="J65Vx8tfwJLfjUJS7pAZ-15" target="J65Vx8tfwJLfjUJS7pAZ-12">
+          <mxGeometry x="-0.1429" relative="1" as="geometry">
+            <mxPoint x="650" y="314.25" as="sourcePoint" />
+            <mxPoint x="350" y="313.75" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="J65Vx8tfwJLfjUJS7pAZ-14" value="&lt;div&gt;Unassigned Devices script&lt;/div&gt;" style="shape=umlActor;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;html=1;" vertex="1" parent="1">
+          <mxGeometry x="850" y="255" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="J65Vx8tfwJLfjUJS7pAZ-15" value="Move converted files to USB" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="590" y="250" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="J65Vx8tfwJLfjUJS7pAZ-16" style="edgeStyle=none;rounded=0;html=1;exitX=0.5;exitY=0.5;exitPerimeter=0;entryX=1;entryY=0.5;startArrow=none;startFill=0;endArrow=none;endFill=0;jettySize=auto;orthogonalLoop=1;strokeWidth=1;entryDx=0;entryDy=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="J65Vx8tfwJLfjUJS7pAZ-14" target="J65Vx8tfwJLfjUJS7pAZ-15">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="872.9000000000001" y="139.1199999999999" as="sourcePoint" />
+            <mxPoint x="740" y="145" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="J65Vx8tfwJLfjUJS7pAZ-17" value="Send Slack notification of processed files" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="370" y="140" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="J65Vx8tfwJLfjUJS7pAZ-18" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" style="html=1;verticalAlign=middle;endArrow=open;dashed=1;endSize=8;exitX=0;exitY=0.5;entryX=1;entryY=1;entryDx=0;entryDy=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="J65Vx8tfwJLfjUJS7pAZ-17" target="J65Vx8tfwJLfjUJS7pAZ-3">
+          <mxGeometry x="-0.1429" relative="1" as="geometry">
+            <mxPoint x="600" y="295" as="sourcePoint" />
+            <mxPoint x="300" y="295" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
