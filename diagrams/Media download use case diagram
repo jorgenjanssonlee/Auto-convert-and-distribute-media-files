@@ -1,1 +1,105 @@
-<mxfile modified="2018-12-02T05:15:28.711Z" host="www.draw.io" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:63.0) Gecko/20100101 Firefox/63.0" version="9.5.1" etag="8f964806-dafe-fd5c-9a68-37876a573175" type="github"><diagram name="Page-1" id="0">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</diagram></mxfile>
+<mxfile modified="2023-01-01T23:09:51.365Z" host="app.diagrams.net" agent="5.0 (Macintosh)" etag="6Fcw0dZ3mnuqNf37GTfR" version="20.2.8" type="github">
+  <diagram name="Page-1" id="0">
+    <mxGraphModel dx="1395" dy="635" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="826" background="#ffffff" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="8" style="edgeStyle=none;rounded=0;html=1;exitX=0.5;exitY=0.5;exitPerimeter=0;entryX=0;entryY=0.5;endArrow=none;endFill=0;jettySize=auto;orthogonalLoop=1;" parent="1" source="2" target="4" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="2" value="User" style="shape=umlActor;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;html=1;" parent="1" vertex="1">
+          <mxGeometry x="60" y="40" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="4" value="Add movie to trakt watchlist" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="180" y="35" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="6" value="Send release to download client" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="620" y="265" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="11" value="Search indexers for media release" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="620" y="150" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="13" style="edgeStyle=none;rounded=0;html=1;exitX=0.5;exitY=0.5;exitPerimeter=0;endArrow=none;endFill=0;jettySize=auto;orthogonalLoop=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="12" target="11" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="15" style="edgeStyle=none;rounded=0;html=1;exitX=0.5;exitY=0.5;exitPerimeter=0;entryX=1;entryY=0.5;endArrow=none;endFill=0;jettySize=auto;orthogonalLoop=1;" parent="1" source="12" target="14" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="22" style="edgeStyle=none;rounded=0;html=1;exitX=0.5;exitY=0.5;exitPerimeter=0;startArrow=none;startFill=0;endArrow=none;endFill=0;jettySize=auto;orthogonalLoop=1;strokeWidth=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="12" target="6" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="828" y="215" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="50" style="edgeStyle=none;rounded=0;html=1;exitX=0.5;exitY=0.5;exitPerimeter=0;entryX=1;entryY=0.5;startArrow=none;startFill=0;endArrow=none;endFill=0;jettySize=auto;orthogonalLoop=1;strokeWidth=1;entryDx=0;entryDy=0;" parent="1" source="12" target="49" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="12" value="Radarr" style="shape=umlActor;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;html=1;" parent="1" vertex="1">
+          <mxGeometry x="880" y="210" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="14" value="Add movie to radarr wanted list" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="620" y="35" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="21" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" style="html=1;verticalAlign=middle;endArrow=open;dashed=1;endSize=8;entryX=0.5;entryY=0;exitX=0.5;exitY=1;" parent="1" source="14" target="11" edge="1">
+          <mxGeometry x="-0.1429" relative="1" as="geometry">
+            <mxPoint x="590" y="125" as="sourcePoint" />
+            <mxPoint x="600" y="155" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="23" value="Download release" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="180" y="270" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="30" style="edgeStyle=none;rounded=0;html=1;exitX=0.5;exitY=0.5;exitPerimeter=0;entryX=0;entryY=0.5;startArrow=none;startFill=0;endArrow=none;endFill=0;jettySize=auto;orthogonalLoop=1;strokeWidth=1;" parent="1" source="24" target="23" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="43" style="edgeStyle=none;rounded=0;html=1;exitX=0.5;exitY=0.5;exitPerimeter=0;entryX=0;entryY=0.5;startArrow=none;startFill=0;endArrow=none;endFill=0;jettySize=auto;orthogonalLoop=1;strokeWidth=1;" parent="1" source="24" target="42" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="24" value="Download client" style="shape=umlActor;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;html=1;" parent="1" vertex="1">
+          <mxGeometry x="60" y="330" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="38" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" style="html=1;verticalAlign=middle;endArrow=open;dashed=1;endSize=8;entryX=1;entryY=0.5;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="6" target="23" edge="1">
+          <mxGeometry x="-0.1429" relative="1" as="geometry">
+            <mxPoint x="370" y="205" as="sourcePoint" />
+            <mxPoint x="470" y="205" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="42" value="Notify Radarr of completed download" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="180" y="380" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="49" value="Move and rename downloaded file " style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="620" y="380" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="ILnQ1hxW0O20wVxB1WNu-65" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" style="html=1;verticalAlign=middle;endArrow=open;dashed=1;endSize=8;exitX=1;exitY=0.5;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" target="14">
+          <mxGeometry x="-0.1429" relative="1" as="geometry">
+            <mxPoint x="320" y="69.5" as="sourcePoint" />
+            <mxPoint x="510" y="70" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ILnQ1hxW0O20wVxB1WNu-67" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" style="html=1;verticalAlign=middle;endArrow=open;dashed=1;endSize=8;entryX=0.5;entryY=0;exitX=0.5;exitY=1;entryDx=0;entryDy=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="11" target="6">
+          <mxGeometry x="-0.1429" relative="1" as="geometry">
+            <mxPoint x="340" y="195" as="sourcePoint" />
+            <mxPoint x="640" y="195" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ILnQ1hxW0O20wVxB1WNu-68" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" style="html=1;verticalAlign=middle;endArrow=open;dashed=1;endSize=8;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1">
+          <mxGeometry x="-0.1429" relative="1" as="geometry">
+            <mxPoint x="249.5" y="340" as="sourcePoint" />
+            <mxPoint x="250" y="380" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ILnQ1hxW0O20wVxB1WNu-69" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" style="html=1;verticalAlign=middle;endArrow=open;dashed=1;endSize=8;exitX=1;exitY=0.5;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" target="49">
+          <mxGeometry x="-0.1429" relative="1" as="geometry">
+            <mxPoint x="320" y="414.5" as="sourcePoint" />
+            <mxPoint x="510" y="415" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
