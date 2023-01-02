@@ -12,9 +12,11 @@ If this is installed on UnRaid, the transfer of processed files can be automated
 Additionally, a small script can start Handbrake on a schedule and shut it down once the processing queue is empty.
 
 # Use case diagram
-![use case diagram](diagrams/Auto-convert-and-distribute-use-case-diagram.drawio.svg)
+![Overview use case diagram](diagrams/Auto-convert-and-distribute-High-level-use-case-diagram.drawio.svg)
 
 # Compare Trakt and Radarr Docker container
+The main script is provided as a Docker image and performs the following logic:
+![Compare Trakt and Radarr flow diagram](diagrams/Get%20trakt%20watch%20list%20and%20add%20to%20Handbrake%20watchfolder.drawio.svg)
 
 ## Prerequisites
 - [Trakt.tv](https://trakt.tv) account with Trakt API App: https://trakt.tv/oauth/applications/new
@@ -41,19 +43,19 @@ You need to provide the following docker environment variables and volume mappin
 ```
 
 - Please replace all variables defined by <> in the above command with the correct values.
-- hbVolumeMappingHandbrake and hbVolumeMappingRadarr are used to construct symlinks that will work for Handbrake (reducing the need to copy the actual files for processing.) They *must* match the config of each docker container. See unraid example below.
 - The slackWebHookUrl is optional. If provided, the script will send a notification at the end of processing.
-
+- hbVolumeMappingHandbrake and hbVolumeMappingRadarr are used to construct symlinks that will work for Handbrake (reducing the need to copy the actual files for processing.) They *must* match the config of each docker container. See unraid example below.
 
 ## Installation on UnRaid
 This docker has not (yet) been submitted to Community Applications, so the template needs to be created manually.
 
-### Docker template 
+### UnRaid Docker template 
 to come
 ### Example config screenshot 
 to come
 
 # Handbrake scripts
+
 to come
 
 # Copy to/from USB and notify
