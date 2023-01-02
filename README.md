@@ -11,8 +11,7 @@ This collection of scripts automates the process of checking a friend's Trakt.tv
 If this is installed on UnRaid, the transfer of processed files can be automated on insertion of a USB drive.
 Additionally, a small script can start Handbrake on a schedule and shut it down once the processing queue is empty.
 
-# Use case diagram
-![Overview use case diagram](diagrams/Auto-convert-and-distribute-High-level-use-case-diagram.drawio.svg)
+![Auto-convert-and-distribute flow chart](diagrams/Auto-convert-and-distribute%20flow%20chart.drawio.svg)
 
 # Compare Trakt and Radarr Docker container
 The main script is provided as a Docker image and performs the following logic:
@@ -56,7 +55,49 @@ to come
 
 # Handbrake scripts
 
-to come
+## Prerequisites
+- ![UnRaid](https://unraid.net/) with [CA User Scripts plugin](https://forums.unraid.net/topic/48286-plugin-ca-user-scripts/) installed
+- [Jlesage's Handbrake docker](https://hub.docker.com/r/jlesage/handbrake)
+
+## Installation of "HandbrakeStart_unraid_user_scripts.sh"
+1. Create a new User Script
+2. Paste in the code below
+3. Edit the WATCH variable to match your config
+4. Edit the name of the Docker container if it's not called Handbrake
+4. Set a cron schedule
+
+```console
+#!/bin/bash
+
+# Set the path to the Handbrake watch folder as seen from the Unraid command line
+WATCH="/mnt/user/Media/Handbrake_hotfolder/watch"
+
+if [ -d "$WATCH" ] && [ -n "$(ls -A "/$WATCH")" ]; then
+  docker start HandBrake
+  logger "HandBrake started by User Scripts"
+fi
+```
+
+## Installation of "Post_watch_folder_processing.sh" script
+1. to come
+```console
+#!/bin/sh
+#
+# This is an example of a post watch folder processing hook.  This script is
+# always invoked with /bin/sh (shebang ignored).
+#
+# The argument of the script is the path to the watch folder.
+#
+
+WATCH_FOLDER=$1
+
+echo "post-watch folder processing: Watch folder = $WATCH_FOLDER"
+
+if [ -d "/$WATCH_FOLDER" ] && [ -z "$(ls -A "$WATCH_FOLDER")" ]; then
+    echo "watch folder empty, shutting down"
+    killall -sigterm ghb
+fi
+```
 
 # Copy to/from USB and notify
 This script is intended to be used on ![UnRaid](https://unraid.net/) and requires the excellent [Unassigned Devices plugin](https://forums.unraid.net/topic/92462-unassigned-devices-managing-disk-drives-and-remote-shares-outside-of-the-unraid-array/)
@@ -69,5 +110,8 @@ The script will trigger on insertion of the USB drive to the UnRaid Server, then
 ## Flow diagram
 ![Copy to/from USB and notify Flow diagram](diagrams/Copy-to-from-USB-and-notify%20flowchart.drawio.svg)
 
+## Prerequisites
+- ![UnRaid](https://unraid.net/) with [Unassigned Devices plugin](https://forums.unraid.net/topic/92462-unassigned-devices-managing-disk-drives-and-remote-shares-outside-of-the-unraid-array/) installed
+
 ## Installation
-to come
+1. to come
