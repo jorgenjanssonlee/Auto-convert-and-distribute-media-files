@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/jorgenjanssonlee/Auto-convert-and-distribute-media-files#readme",
   "dependencies": {
-    "axios": "^1.2.2",
+    "axios": "^1.6.0",
     "child_process": "^1.0.2",
     "fs": "^0.0.1-security",
     "slack-notify": "^2.0.6"
