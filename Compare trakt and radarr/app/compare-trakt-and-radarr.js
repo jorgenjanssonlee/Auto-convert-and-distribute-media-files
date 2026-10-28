@@ -22,8 +22,6 @@ Slack Webhook (optional): https://api.slack.com/messaging/webhooks
 
 const axios = require('axios');
 const fs = require('fs');
-const { resolve } = require('path');
-const { stringify } = require('querystring');
 const SlackNotify = require('slack-notify');
 const slack = SlackNotify(process.env.slackWebhookUrl); // Configure Slack notifications
 
