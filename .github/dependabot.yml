@@ -1,0 +1,13 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: "/Compare trakt and radarr/app"
+    schedule:
+      interval: weekly
+    groups:
+      npm-minor-patch:
+        update-types: ["minor", "patch"]
+  - package-ecosystem: docker
+    directory: "/Compare trakt and radarr"
+    schedule:
+      interval: weekly
